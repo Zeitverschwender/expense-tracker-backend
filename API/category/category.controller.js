@@ -50,7 +50,8 @@ const editCategory = async (req, res) => {
   try {
     const category = await Category.findByIdAndUpdate(
       catgeoryId,
-      updatedCategoryFields
+      updatedCategoryFields,
+      {useFindAndModify:false}
     );
     res.json({
       status: "Success",
