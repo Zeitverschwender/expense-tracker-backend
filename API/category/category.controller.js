@@ -1,5 +1,6 @@
 const { nextTick } = require("process");
 const Category = require("../../db/models/category");
+const Exception = require('../../utils/Exception');
 
 const getAllCategories = async (req, res, next) => {
   try {
@@ -19,7 +20,7 @@ const addCategory = async (req, res, next) => {
       category,
     });
   } catch (e) {
-    next(e);
+    next(new Exception(403,e.message));
   }
 };
 
