@@ -35,7 +35,7 @@ const getCategory = async (req, res, next) => {
 const deleteCategory = async (req, res, next) => {
   const catgeoryId = req.params.id;
   try {
-    const category = await Category.findByIdAndRemove(catgeoryId);
+    await Category.deleteOne({ _id: catgeoryId });
     res.json({
       status: "Success",
       message: "Category deleted successfuly",
