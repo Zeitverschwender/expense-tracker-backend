@@ -1,6 +1,6 @@
 require("dotenv").config();
 const moongose = require('mongoose');
-console.log(process.env.DB_CONNECTION)
+
 moongose.connect(process.env.DB_CONNECTION,
     {
       useNewUrlParser: true,
