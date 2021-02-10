@@ -7,7 +7,7 @@ const getAllCategories = async (req, res, next) => {
     const categories = await Category.find({});
     res.json(categories);
   } catch (e) {
-    next(e);
+    next(new Exception(400, e.message))
   }
 };
 const addCategory = async (req, res, next) => {
@@ -19,7 +19,7 @@ const addCategory = async (req, res, next) => {
       category,
     });
   } catch (e) {
-    next(new Exception(403,e.message));
+    next(new Exception(400,e.message));
   }
 };
 
@@ -29,7 +29,7 @@ const getCategory = async (req, res, next) => {
     const category = await Category.findById(catgeoryId);
     res.json(category);
   } catch (e) {
-    next(e);
+    next(new Exception(400, e.message))
   }
 };
 const deleteCategory = async (req, res, next) => {
@@ -41,7 +41,7 @@ const deleteCategory = async (req, res, next) => {
       message: "Category deleted successfuly",
     });
   } catch (e) {
-    next(e);
+    next(new Exception(400, e.message))
   }
 };
 const editCategory = async (req, res) => {
@@ -59,7 +59,7 @@ const editCategory = async (req, res) => {
       category,
     });
   } catch (e) {
-    next(e);
+    next(new Exception(400, e.message))
   }
 };
 
