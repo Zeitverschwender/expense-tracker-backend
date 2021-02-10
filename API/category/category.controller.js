@@ -11,9 +11,8 @@ const getAllCategories = async (req, res, next) => {
   }
 };
 const addCategory = async (req, res, next) => {
-  const category = req.body;
   try {
-    await Category.create(category);
+    const category = await Category.create(req.body);
     res.status(201).json({
       status: "Success",
       message: "Category created successfuly",
