@@ -36,7 +36,7 @@ const userRotue = require("./API/user/user.routes");
 app.use("/expenses", authMiddleware.authenticateToken, expenseRoute);
 app.use("/categories", categoryRoute);
 app.use("/auth", authRoute);
-app.use("/user", userRotue);
+app.use("/user", authMiddleware.authenticateToken, userRotue);
 
 app.get("/loggedin", async (req, res) => {
   res.send("Logged In Successfully.")
