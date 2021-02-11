@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const Category = require("./category")
 
 const ExpenseSchema = mongoose.Schema(
   {
@@ -16,7 +15,8 @@ const ExpenseSchema = mongoose.Schema(
     },
     category: {
       desc: "Category Interval",
-      type: Category.schema,
+      type: mongoose.Schema.ObjectId,
+      ref: 'Category',
       required: true,
     },
     amount: {
