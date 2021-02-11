@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Expense = require("./expense");
+
 const UserSchema = mongoose.Schema(
   {
     name: {
@@ -16,8 +17,8 @@ const UserSchema = mongoose.Schema(
     },
     expenses: {
       desc: "User Expenses",
-      type: [Expense.schema]
-    }
+      type: [Expense.schema],
+    },
   },
   {
     strict: true,
