@@ -31,10 +31,12 @@ app.use(cookieParser());
 const expenseRoute = require("./API/expense/expense.routes");
 const categoryRoute = require("./API/category/category.routes");
 const authRoute = require("./API/authentication/auth.routes");
+const userRotue = require("./API/user/user.routes");
 
 app.use("/expenses", authMiddleware.authenticateToken, expenseRoute);
 app.use("/categories", categoryRoute);
 app.use("/auth", authRoute);
+app.use("/user", userRotue);
 
 app.get("/loggedin", async (req, res) => {
   res.send("Logged In Successfully.")
