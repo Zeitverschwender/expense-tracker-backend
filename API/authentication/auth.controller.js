@@ -40,7 +40,7 @@ const loginUser = (req,res)=>{
         }
       );
       const token = jwt.sign(googleUser, process.env.JWT_SECRET);
-      res.cookie("session",token,{
+      res.cookie("token",token,{
         maxAge: 1000*60*30,
         httpOnly: true,
       });
