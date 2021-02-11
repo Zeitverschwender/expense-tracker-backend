@@ -3,6 +3,7 @@ const moongose = require('mongoose');
 
 moongose.connect(process.env.DB_CONNECTION,
     {
+      useCreateIndex: true,
       useNewUrlParser: true,
       useUnifiedTopology: true,
     },
