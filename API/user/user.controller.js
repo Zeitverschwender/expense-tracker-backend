@@ -1,10 +1,12 @@
-const Expense = require("../../db/models/user");
-const Exception = require('../../utils/Exception');
-
 const getGooglePhoto = (req, res) => {
-  res.send(req.uesr.photo);
+  res.send(req.user.photo);
 }
 
-const getUserPhoto = (req, res) => {
-	res.send(req.user.image);
+const getUsername = (req, res) => {
+	res.send(req.user.name);
+}
+
+module.exports = {
+	getGooglePhoto,
+	getUsername,
 }
