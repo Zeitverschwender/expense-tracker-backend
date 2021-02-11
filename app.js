@@ -22,10 +22,11 @@ app.use(
 //Routes
 const expenseRoute = require("./API/expense/expense.routes");
 const categoryRoute = require("./API/category/category.routes");
-
+const authRoute = require("./API/authentication/auth.routes");
 
 app.use("/expenses", expenseRoute);
 app.use("/categories", categoryRoute);
+app.use("/auth", authRoute);
 
 app.use(errorHandler);
 app.listen(port, async () => {
