@@ -1,6 +1,7 @@
 const axios = require("axios");
 const jwt = require("jsonwebtoken")
 const {OAuth2Client} = require('google-auth-library');
+const User = require("../../db/models/user");
 const Exception = require("../../utils/Exception.js");
 
 
@@ -39,12 +40,26 @@ const loginUser = (req,res)=>{
           console.log("Failed to fetch user");
         }
       );
-      const token = jwt.sign(googleUser, process.env.JWT_SECRET);
-      res.cookie("token",token,{
-        maxAge: 1000*60*30,
-        httpOnly: true,
-      });
-      res.redirect("http://localhost:8000/loggedin")
+      const newUser = {
+        googleId: googleUser.id,
+        name: googleUser.name,
+        profile_picture_url: googleUser.picture,
+      };
+      try {
+        let user = await User.findOne({ googleId: googleUser.id });
+        if (!user) {
+          user = await User.create(newUser);
+        }
+        const userToToken = JSON.parse(JSON.stringify(user));
+        const token = jwt.sign(userToToken, process.env.JWT_SECRET);
+        res.cookie("token",token,{
+          maxAge: 1000*60*30,
+          httpOnly: true,
+        });
+        res.redirect("http://localhost:8000/loggedin")
+      } catch (err) {
+        console.error(err);
+      }
     }
 
   })
