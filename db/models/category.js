@@ -8,6 +8,7 @@ const CategorySchema = mongoose.Schema(
       required: true,
       trim: true,
       maxLength: 128,
+      unique: true,
     },
     color: {
       desc: "Color of the category in hex",
