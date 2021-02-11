@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+const Expense = require("./expense");
 const UserSchema = mongoose.Schema(
   {
     name: {
@@ -10,10 +10,14 @@ const UserSchema = mongoose.Schema(
       maxLength: 128,
     },
     profile_picture_url: {
-      desc: "",
+      desc: "User's Google Picture",
       type: String,
       default: "",
     },
+    expenses: {
+      desc: "User Expenses",
+      type: [Expense.schema]
+    }
   },
   {
     strict: true,
