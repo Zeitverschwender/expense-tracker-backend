@@ -8,7 +8,7 @@ const errorHandler = require("./middlewares/errorHandler");
 const app = express();
 const port = process.env.PORT || 3000;
 
-//Middleware
+//Bodyparser
 app.use(express.json());
 
 //CORS
@@ -22,8 +22,10 @@ app.use(
 //Routes
 const expenseRoute = require("./API/expense/expense.routes");
 const categoryRoute = require("./API/category/category.routes");
-app.use("/expense", expenseRoute);
-app.use("/category", categoryRoute);
+
+
+app.use("/expenses", expenseRoute);
+app.use("/categories", categoryRoute);
 
 app.use(errorHandler);
 app.listen(port, async () => {
