@@ -3,6 +3,10 @@ const Expense = require("./expense");
 
 const UserSchema = mongoose.Schema(
   {
+    googleId: {
+      type: String,
+      required: true,
+    },
     name: {
       desc: "user full name",
       type: String,
