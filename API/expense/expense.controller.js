@@ -47,7 +47,8 @@ const updateExpenses = async (req, res, next) => {
     await currUser.save();
     res.json({
       status: "Success",
-      message: "Expense updated successfuly"
+      message: "Expense updated successfuly",
+      itemToUpdate,
     });
   } catch (e) {
     next(new Exception(400, e.message))
