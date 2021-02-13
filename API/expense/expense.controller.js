@@ -39,11 +39,12 @@ const addExpenses = async (req, res, next) => {
 };
 const updateExpenses = async (req, res, next) => {
 	const expenseId = req.params.id;
+  const updatedExpenseFields = req.body;
   try {
     const currUser = await DatabaseHelpers.getUserFromId(req.user);
     const itemToUpdate = currUser.expenses.id(expenseId);
-    itemToUpdate.set(req.body);
-    currUser.save();
+    itemToUpdate.set(updatedExpenseFields);
+    await currUser.save();
     res.json({
       status: "Success",
       message: "Expense updated successfuly"
