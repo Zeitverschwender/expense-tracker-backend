@@ -34,7 +34,7 @@ const authRoute = require("./API/authentication/auth.routes");
 const userRotue = require("./API/user/user.routes");
 
 app.use("/expenses", authMiddleware.authenticateToken, expenseRoute);
-app.use("/categories", categoryRoute);
+app.use("/categories", authMiddleware.authenticateToken, categoryRoute);
 app.use("/auth", authRoute);
 app.use("/user", authMiddleware.authenticateToken, userRotue);
 
