@@ -55,7 +55,7 @@ const loginUser = (req,res)=>{
           maxAge: 1000*60*30,
           httpOnly: true,
         });
-        res.redirect("http://localhost:8000/loggedin")
+        res.redirect(process.env.FRONTEND_URL);
       } catch (err) {
         console.error(err);
       }
