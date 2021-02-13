@@ -1,0 +1,16 @@
+{
+    "defaultCategories": [
+        {
+            "title": "Food",
+            "Color": "#4ff"
+        },
+        {
+            "title": "Entertainment",
+            "Color": "#5f4f"
+        },
+        {
+            "title": "Transportation",
+            "Color": "#4d2f"
+        }
+    ]
+}

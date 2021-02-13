@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 const Expense = require("./expense");
+const Category = require("./category");
+const defaultCategories =  require("../defaultCategories.json");
 
 const UserSchema = mongoose.Schema(
   {
@@ -23,6 +25,11 @@ const UserSchema = mongoose.Schema(
       desc: "User Expenses",
       type: [Expense.schema],
     },
+    categories: {
+      desc: "User Categories",
+      type: [Category.schema],
+      default: defaultCategories.defaultCategories,
+    }
   },
   {
     strict: true,
