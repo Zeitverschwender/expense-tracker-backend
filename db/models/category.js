@@ -13,7 +13,7 @@ const CategorySchema = mongoose.Schema(
       desc: "Color of the category in hex",
       type: String,
       maxLength: 7,
-      minLength: 4,
+      minLength: 7,
       default: "#f63",
     },
     description: {

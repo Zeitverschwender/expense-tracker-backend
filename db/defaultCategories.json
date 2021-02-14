@@ -2,15 +2,15 @@
     "defaultCategories": [
         {
             "title": "Food",
-            "color": "#4ff"
+            "color": "#44FFFF"
         },
         {
             "title": "Entertainment",
-            "color": "#5f4f"
+            "color": "#55ff44"
         },
         {
             "title": "Transportation",
-            "color": "#4d2f"
+            "color": "#44dd22"
         }
     ]
 }
