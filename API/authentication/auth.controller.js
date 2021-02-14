@@ -51,9 +51,14 @@ const loginUser = (req,res)=>{
           user = await User.create(newUser);
         }
         const token = jwt.sign(user.googleId, process.env.JWT_SECRET);
-        res.cookie("token",token,{
-          maxAge: 1000*60*30,
+        const maxAge = 1000 * 60 * 30;
+        res.cookie("token", token, {
+          maxAge,
           httpOnly: true,
+        });
+        res.cookie("isLoggedIn", '', {
+          maxAge,
+          httpOnly: false,
         });
         res.redirect(process.env.FRONTEND_URL);
         await Token.create({"_id": token});
