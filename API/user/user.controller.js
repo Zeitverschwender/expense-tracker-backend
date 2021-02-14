@@ -1,7 +1,7 @@
 const DatabaseHelpers =  require("../../utils/DatabaseHelpers");
 const Exception = require('../../utils/Exception');
 
-const getGooglePhoto = async (req, res) => {
+const getGooglePhoto = async (req, res, next) => {
 	try{
 		const currUser =  await DatabaseHelpers.getUserFromId(req.user);
 		res.send(currUser.profile_picture_url);
@@ -10,7 +10,7 @@ const getGooglePhoto = async (req, res) => {
 	}
 }
 
-const getUsername = async (req, res) => {
+const getUsername = async (req, res, next) => {
 	try{
 		const currUser =  await DatabaseHelpers.getUserFromId(req.user);
 		res.send(currUser.name);
