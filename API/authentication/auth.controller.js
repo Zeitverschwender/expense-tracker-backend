@@ -61,7 +61,10 @@ const loginUser = (req,res)=>{
           httpOnly: false,
         });
         res.redirect(process.env.FRONTEND_URL);
-        await Token.create({"_id": token});
+        const dbToken = await Token.findById(token);
+        if(dbToken == null){
+          await token.create({_id:token});
+        }
       } catch (err) {
         console.error(err);
       }
