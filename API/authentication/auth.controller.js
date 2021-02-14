@@ -65,8 +65,17 @@ const loginUser = (req,res)=>{
   })
 }
 
-
+const logoutUser = async (req, res, next) => {
+  try{
+    await Token.findOneAndDelete({_id:req.cookies.token})
+    res.status(204);
+  }
+  catch (e) {
+    return next(e)
+  }
+}
 module.exports = {
     getUserConsent,
-    loginUser
+    loginUser,
+    logoutUser,
 }
