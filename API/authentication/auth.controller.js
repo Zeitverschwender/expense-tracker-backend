@@ -2,7 +2,7 @@ const axios = require("axios");
 const jwt = require("jsonwebtoken")
 const {OAuth2Client} = require('google-auth-library');
 const User = require("../../db/models/user");
-const Exception = require("../../utils/Exception.js");
+const Token = require("../../db/models/token");
 
 
 const getUserConsent = (req,res) =>{
@@ -56,6 +56,7 @@ const loginUser = (req,res)=>{
           httpOnly: true,
         });
         res.redirect(process.env.FRONTEND_URL);
+        await Token.create({"_id": token});
       } catch (err) {
         console.error(err);
       }
