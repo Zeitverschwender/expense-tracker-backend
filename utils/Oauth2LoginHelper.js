@@ -1,5 +1,5 @@
 
-const oAuth2GetToken = (oAuth2Client) => {
+const oAuth2GetToken = (req, oAuth2Client) => {
   return new Promise((resolve, reject) => {
     oAuth2Client.getToken(req.query.code, (err, google_token) => {
       if (err) return reject(err);

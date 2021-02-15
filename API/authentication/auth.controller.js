@@ -33,7 +33,7 @@ const loginUser = async (req, res) => {
     getCallBackURL(req)
   );
   try {
-    const google_token = await oAuth2GetToken(oAuth2Client);
+    const google_token = await oAuth2GetToken(req, oAuth2Client);
     const googleUser = await axios
       .get(
         `https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${google_token.access_token}`,
