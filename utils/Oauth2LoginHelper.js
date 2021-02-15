@@ -1,6 +1,5 @@
-const { OAuth2Client } = require("google-auth-library");
 
-const outh2GetToken = (oAuth2Client) => {
+const oAuth2GetToken = (oAuth2Client) => {
   return new Promise((resolve, reject) => {
     oAuth2Client.getToken(req.query.code, (err, google_token) => {
       if (err) return reject(err);
@@ -10,5 +9,5 @@ const outh2GetToken = (oAuth2Client) => {
 };
 
 module.exports = {
-  outh2GetToken,
+  oAuth2GetToken,
 };
