@@ -3,13 +3,20 @@ const jwt = require("jsonwebtoken")
 const {OAuth2Client} = require('google-auth-library');
 const User = require("../../db/models/user");
 const Token = require("../../db/models/token");
+const url = require('url').URL;
 
+const GOOGLE_CALLBACK_ROUTE = "auth/google/callback";
+
+const getCallBackURL = (req) => {
+  const baseURL = new URL(req.protocol + "://" + req.get('host')).href
+  return baseURL+GOOGLE_CALLBACK_ROUTE;
+}
 
 const getUserConsent = (req,res) =>{
   const oAuth2Client = new OAuth2Client(
     process.env.GOOGLE_CLIENT_ID,
     process.env.GOOGLE_CLIENT_SECRET,
-    "http://localhost:8000/auth/google/callback",
+    getCallBackURL(req),
   );
   const authorizeUrl = oAuth2Client.generateAuthUrl({
     access_type: 'offline',
@@ -22,7 +29,7 @@ const loginUser = (req,res)=>{
   const oAuth2Client = new OAuth2Client(
     process.env.GOOGLE_CLIENT_ID,
     process.env.GOOGLE_CLIENT_SECRET,
-    "http://localhost:8000/auth/google/callback",
+    getCallBackURL(req),
   );
   oAuth2Client.getToken(req.query.code, async (err, google_token)=>{
     if(err) console.log(err);
