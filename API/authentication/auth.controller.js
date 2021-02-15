@@ -75,12 +75,12 @@ const loginUser = async (req, res) => {
   } catch (err) {
     console.error(err);
   }
-
-}
+};
 
 const logoutUser = async (req, res, next) => {
   try {
     await Token.findOneAndDelete({ _id: req.cookies.token });
+    res.cookie("token", "", { maxAge: "0" });
     res.status(204).send("");
   } catch (e) {
     return next(e);
