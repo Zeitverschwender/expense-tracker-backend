@@ -29,6 +29,7 @@ const addCategory = async (req, res, next) => {
     const currUser = await DatabaseHelpers.getUserFromId(req.user);
     const newCategory = await new Category(category);
     currUser.categories.push(newCategory);
+    await currUser.save();
     res.status(201).json({
       status: "Success",
       message: "Category created successfuly",
