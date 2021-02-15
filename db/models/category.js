@@ -21,6 +21,7 @@ const CategorySchema = mongoose.Schema(
       type: String,
       trim: true,
       maxLength: 520,
+      default: "",
     },
   },
   {

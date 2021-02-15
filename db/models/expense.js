@@ -11,6 +11,7 @@ const ExpenseSchema = mongoose.Schema(
       desc: "Item Note",
       type: String,
       trim: true,
+      default: "",
       maxLength: 520,
     },
     category: {
