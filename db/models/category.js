@@ -14,7 +14,7 @@ const CategorySchema = mongoose.Schema(
       type: String,
       maxLength: 7,
       minLength: 7,
-      default: "#f63",
+      default: "#ff6633",
     },
     description: {
       desc: "Category Description",
