@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: expense-tracker-api-service
+  namespace: expense-tracker
+spec:
+  selector:
+    app: expense-tracker-api
+  ports:
+    - name: "8000"
+      port: 8000
+      targetPort: 8000

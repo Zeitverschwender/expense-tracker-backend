@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: expense-tracker-api-deployment
+  namespace: expense-tracker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: expense-tracker-api
+  template:
+    metadata:
+      labels:
+        app: expense-tracker-api
+    spec:
+      containers:
+        - name: expense-tracker-api
+          image: digitalphoenixx/expense-tracker-api:latest
+          imagePullPolicy: "IfNotPresent"
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          env:
+            - name: DB_CONNECTION
+              valueFrom:
+                secretKeyRef:
+                  key: DB_CONNECTION
+                  name: expense-tracker-api-secret
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  key: PORT
+                  name: expense-tracker-api-configmap
+            - name: FRONTEND_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: FRONTEND_URL
+                  name: expense-tracker-api-configmap
+            - name: GOOGLE_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  key: GOOGLE_CLIENT_ID
+                  name: expense-tracker-api-secret
+            - name: GOOGLE_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  key: GOOGLE_CLIENT_SECRET
+                  name: expense-tracker-api-secret
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  key: JWT_SECRET
+                  name: expense-tracker-api-secret
+          ports:
+            - containerPort: 8000
