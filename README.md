@@ -5,6 +5,8 @@
 
 REST API for [Expense Tracker](https://github.com/Zeitverschwender/expense-tracker-backend) Frontend app.
 
+View [Endpoints Docs](./docs/endpoints.md).
+
 ## Run the code locally
 
 1) Clone the repo
